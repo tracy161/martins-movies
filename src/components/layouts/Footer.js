@@ -8,10 +8,10 @@ const Footer = () => {
         <Container>
           <Row>
             <Col sm>
-              <div class='widget widget-blog widget_text'>
-                <div class='textwidget'>
+              <div className='widget widget-blog widget_text'>
+                <div className='textwidget'>
                   <h4>Martin's Movies</h4>
-                  <p class='nomargin'>
+                  <p className='nomargin'>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Itaque, ducimus, atque. Praesentium suscipit provident
                     explicabo dignissimos nostrum numquam deserunt earum
@@ -21,10 +21,10 @@ const Footer = () => {
               </div>
             </Col>
             <Col sm>
-              <div class='widget widget-blog widget_text'>
-                <div class='textwidget'>
+              <div className='widget widget-blog widget_text'>
+                <div className='textwidget'>
                   <h4>Twitter Feed</h4>
-                  <div class='tp_recent_tweets'>
+                  <div className='tp_recent_tweets'>
                     <ul>
                       <li>
                         <span>
@@ -66,7 +66,7 @@ const Footer = () => {
                           </a>
                         </span>{' '}
                         <br />
-                        <a class='twitter_time' target='_blank' href='#!'>
+                        <a className='twitter_time' target='_blank' href='#!'>
                           <small style={{fontStyle: 'italic'}}>yesterday</small>
                         </a>
                       </li>
@@ -135,7 +135,7 @@ const Footer = () => {
                   </li>
                 </ul>
               </div>
-              <div class='copyright'>
+              <div className='copyright'>
                 Copyright {new Date().getFullYear()}. All rights reserved{' '}
               </div>
             </div>
