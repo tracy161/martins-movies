@@ -1,0 +1,74 @@
+.page-header {
+    position: relative;
+    padding: 50px 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 999;
+    background-image: url('./assets/pics/movie-collection.jpeg');
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: .7;
+}
+
+.overlay-gradient {
+    background: linear-gradient(to bottom, #a11f3c 0%, #9352b3 100%);
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: .6;
+}
+
+header h1 {
+    color: #fff;
+}
+
+footer.footer.bg-dark .footer-copyright-area {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+} 
+
+footer.bg-dark {
+    color: #fff;
+    background-color: #3e4555!important;
+}
+
+footer h4 {
+    margin-bottom: 1.7rem;
+}
+
+footer a {
+    text-decoration: none;
+    color: #fff;
+}
+
+footer a:hover {
+    color: #9352b3;
+}
+
+.footer-widget-area {
+    padding: 100px 0;
+}
+
+.footer-widget-area ul {
+    list-style: none;
+    padding: 0;
+}
+
+.tp_recent_tweets li {
+    background-image: url('./assets/pics/tweet.png');
+    background-repeat: no-repeat;
+    background-position: 0px 4px;
+    padding-left: 30px;
+    padding-bottom: 20px;
+    line-height: 20px;
+    list-style-type: none;
+}
+
+.links {
+    display: flex!important;
+}
+
+.copyright {
+    margin-left: auto;
+}

@@ -1,12 +1,12 @@
 import React from 'react';
-import { Navbar, Container } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
 
 const NavBar = () => {
   return (
-    <Navbar bg='light' expand='lg'>
-      <Container>
-        <Navbar.Brand>Martin's Movies</Navbar.Brand>
-      </Container>
+    <Navbar expand='lg' style={{padding: '0.5rem 1rem'}}>
+      <Navbar.Brand>
+        <h2 style={{ fontSize: '30px' }}>Martin's Movies</h2>
+      </Navbar.Brand>
     </Navbar>
   );
 };
