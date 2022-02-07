@@ -18,7 +18,7 @@ function App() {
         <NavBar />
         <Header />
         <Container>
-          <MoviesList />
+          <MoviesList />          
         </Container>
         <Footer />
       </>

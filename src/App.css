@@ -69,7 +69,7 @@ header h1 {
 
 .listing-content {
   position: relative;
-  padding: 30px;
+  padding: 10px 30px 30px 30px;
 }
 
 .card-text {
@@ -79,6 +79,15 @@ header h1 {
 .text-muted {
   font-size: 14px;
   color: #999999 !important;
+}
+
+.mark-btn {
+  position: absolute;
+  top: -15px;
+  right: 30px;
+  background: #9352b3;
+  color: #fff;
+  border: #9352b3;
 }
 
 .button-movie {
@@ -201,4 +210,42 @@ footer h4 {
   color: #666;
   border-radius: 5px;
   text-align: center;
+}
+
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  border-radius: 0.25rem;
+}
+
+.page-numbers {
+  padding: 0;
+  list-style-type: none;
+  margin: 0 auto;
+  text-decoration: none;
+  color: #212529;
+}
+
+.pagination ul li {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  margin: 0 5px 0 0;
+  padding: 0;
+}
+
+ul.page-numbers span.page-numbers.current {
+  background: #9352b3;
+  color: #fff;
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 50px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
 }

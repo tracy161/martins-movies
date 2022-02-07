@@ -11,6 +11,13 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const MovieCard = ({ movie }) => {
+  const [watch, setWatch] = useState(false);
+
+  const handleWatch = (e) => {
+    e.preventDefault();
+    setWatch(true);
+  }
+
   const [genres, setGenres] = useState([]);
   const [imdbLink, setIMDBLink] = useState([]);
 
@@ -51,6 +58,9 @@ const MovieCard = ({ movie }) => {
           />
         </div>
         <div className='listing-content'>
+          <Button size='sm' className='mark-btn' onClick={(e) => handleWatch(e)}>
+            {watch ? <p><i className='fa fa-check'></i> Watched</p> : 'Unwatched'}
+          </Button>
           <Card.Body>
             <Card.Title>
               <h2 className='title'>{movie.title}</h2>

@@ -35,6 +35,25 @@ export const getMovies = () => async (dispatch) => {
   }
 };
 
+export const nextPage = (pageNumber) => async (dispatch) => {
+  try {
+    setLoading();
+    const res = await axios.get(
+      `https://api.themoviedb.org/3/discover/movie?api_key=${movieAPI}&page=${pageNumber}`
+    );
+
+    dispatch({
+      type: GET_MOVIES,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: MOVIES_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
 // Search movies
 export const searchMovies = (text) => (dispatch) => {
   try {

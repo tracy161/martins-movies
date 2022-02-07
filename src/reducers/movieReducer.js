@@ -9,6 +9,9 @@ import {
 const initialState = {
   movies: null,
   filtered: null,
+  currentPage: 1,
+  totalResults: 0,
+  totalPages: 0,
   loading: false,
   error: null,
 };
@@ -20,6 +23,9 @@ const movieReducer = (state = initialState, action) => {
       return {
         ...state,
         movies: payload,
+        currentPage: payload.page,
+        totalResults: payload.total_results,
+        totalPages: payload.total_pages,
         loading: false,
       };
     case SEARCH_MOVIES:
