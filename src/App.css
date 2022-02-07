@@ -1,3 +1,9 @@
+.nav-item {
+  margin: 0;
+  padding: 0 10px;
+  right: 0;
+}
+
 .page-header {
   position: relative;
   padding: 50px 0;
@@ -38,6 +44,10 @@ header h1 {
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   margin: 30px 0px;
+}
+
+.movie-box:hover {
+  transform: translate(0, -13px);
 }
 
 .movie-box i {
@@ -81,11 +91,11 @@ header h1 {
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
-  transition: all .5s ease;
+  transition: all 0.5s ease;
 }
 
-.button-movie::hover {
-  background: #9352b3!important;
+.button-movie:hover {
+  background: #9352b3 !important;
 }
 
 footer.footer.bg-dark .footer-copyright-area {
@@ -141,4 +151,52 @@ footer h4 {
 
 .copyright {
   margin-left: auto;
+}
+
+.general-search-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 99;
+  height: 60px;
+  background: #fff;
+  padding: 0 20px;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.general-search-wrapper.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.general-search-wrapper .general-search {
+  position: relative;
+}
+
+.general-search-wrapper .general-search .toggle-search {
+  position: absolute;
+  right: 0;
+  top: 0;
+  line-height: 60px;
+  cursor: pointer;
+  color: #666;
+}
+
+.general-search-wrapper .general-search input {
+  height: 60px;
+  border: 0;
+  font-size: 30px;
+  width: 100%;
+  padding: 10px 20px;
+  color: #666;
+  border-radius: 5px;
+  text-align: center;
 }

@@ -22,7 +22,7 @@ const MoviesList = ({ movie: { movies, loading }, getMovies }) => {
           <p className='center'>No logs to show...</p>
         ) : (
           movies.results.map((movie, index) => (
-            <Col key={index} xs={6} md={4} style={{paddingRight: '15px', paddingLeft: '15px'}}>
+            <Col key={index} md={4} style={{paddingRight: '15px', paddingLeft: '15px'}}>
               <MovieCard movie={movie}  />
             </Col>
           ))

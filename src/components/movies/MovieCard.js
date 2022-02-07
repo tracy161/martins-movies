@@ -32,7 +32,7 @@ const MovieCard = ({ movie }) => {
         const imdb = result.imdb_id;
         setIMDBLink(imdb);
       });
-  }, []);
+  }, [movie.id]);
 
   const genreText = movie.genre_ids.map((id, index) => {
     return (
