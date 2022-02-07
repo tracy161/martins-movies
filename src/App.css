@@ -152,7 +152,9 @@ footer h4 {
 .copyright {
   margin-left: auto;
 }
-
+.nav-link {
+  color: #9352b3;
+}
 .general-search-wrapper {
   position: absolute;
   top: 0;

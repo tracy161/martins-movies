@@ -61,7 +61,15 @@ const MovieCard = ({ movie }) => {
               {shortGenreText}
             </Card.Subtitle>
             <Card.Text>{movie.overview.substring(0, 200)}...</Card.Text>
-            {imdbLink && <a href={`https://www.imdb.com/title/${imdbLink}/`}><Button className='button-movie'>Read More</Button></a>}
+            {imdbLink && (
+              <a
+                href={`https://www.imdb.com/title/${imdbLink}/`}
+                target='_blank'
+                rel='noreferrer'
+              >
+                <Button className='button-movie'>Read More</Button>
+              </a>
+            )}
           </Card.Body>
         </div>
       </Card>

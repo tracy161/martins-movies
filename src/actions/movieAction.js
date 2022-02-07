@@ -1,5 +1,11 @@
 import axios from 'axios';
-import { GET_MOVIES, SET_LOADING, MOVIES_ERROR } from './types';
+import {
+  GET_MOVIES,
+  SET_LOADING,
+  MOVIES_ERROR,
+  SEARCH_MOVIES,
+  CLEAR_SEARCH,
+} from './types';
 
 let movieAPI;
 
@@ -27,6 +33,27 @@ export const getMovies = () => async (dispatch) => {
       payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
+};
+
+// Search movies
+export const searchMovies = (text) => (dispatch) => {
+  try {
+    setLoading();
+    dispatch({
+      type: SEARCH_MOVIES,
+      payload: text,
+    });
+  } catch (err) {
+    dispatch({
+      type: MOVIES_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Clear Search
+export const clearSearch = () => (dispatch) => {
+  dispatch({ type: CLEAR_SEARCH });
 };
 
 // Set Loading to true

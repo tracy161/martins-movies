@@ -6,7 +6,7 @@ import MovieCard from './MovieCard';
 import { getMovies } from '../../actions/movieAction';
 import { Row, Col } from 'react-bootstrap';
 
-const MoviesList = ({ movie: { movies, loading }, getMovies }) => {
+const MoviesList = ({ movie: { movies, filtered, loading }, getMovies }) => {
   useEffect(() => {
     getMovies();
   }, [getMovies]);
@@ -18,14 +18,31 @@ const MoviesList = ({ movie: { movies, loading }, getMovies }) => {
   return (
     <>
       <Row style={movieRow}>
-        {!loading && movies.length === 0 ? (
-          <p className='center'>No logs to show...</p>
+        {!loading && filtered?.length === 0 && <h1 style={{textAlign: 'center'}}>No Movies Found...</h1> }
+        {!loading && movies !== null ? (
+          filtered !== null ? (
+            filtered.map((movie, index) => (
+              <Col
+                key={index}
+                md={4}
+                style={{ paddingRight: '15px', paddingLeft: '15px' }}
+              >
+                <MovieCard movie={movie} />
+              </Col>
+            ))
+          ) : (
+            movies.results.map((movie, index) => (
+              <Col
+                key={index}
+                md={4}
+                style={{ paddingRight: '15px', paddingLeft: '15px' }}
+              >
+                <MovieCard movie={movie} />
+              </Col>
+            ))
+          )
         ) : (
-          movies.results.map((movie, index) => (
-            <Col key={index} md={4} style={{paddingRight: '15px', paddingLeft: '15px'}}>
-              <MovieCard movie={movie}  />
-            </Col>
-          ))
+          <p className='center'>No movies to show...</p>
         )}
       </Row>
     </>
@@ -34,8 +51,8 @@ const MoviesList = ({ movie: { movies, loading }, getMovies }) => {
 
 const movieRow = {
   paddingTop: '80px',
-  paddingBottom: '80px'
-}
+  paddingBottom: '80px',
+};
 
 MoviesList.propTypes = {
   movie: PropTypes.object.isRequired,
