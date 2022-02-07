@@ -5,6 +5,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  color: #3e4555;
+}
+
+p {
+  font-size: 16px;
+  line-height: 24px;
+  color: #948a99;
+  margin-bottom: 1.7em;
+  margin-top: 0;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
