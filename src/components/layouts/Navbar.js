@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Navbar } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { searchMovies, clearSearch } from '../../actions/movieAction';
@@ -41,6 +41,12 @@ const NavBar = ({ movie: { filtered }, searchMovies, clearSearch }) => {
         <Navbar.Brand>
           <h2 style={{ fontSize: '30px' }}>Martin's Movies</h2>
         </Navbar.Brand>
+        <Nav>
+          <Nav.Link href='#!'>Home</Nav.Link>
+          <Nav.Link href='#!'>Movies & TV Shows</Nav.Link>
+          <Nav.Link href='#!'>Blog</Nav.Link>
+          <Nav.Link href='#!'>Contact Us</Nav.Link>
+        </Nav>
         <div className='nav-item'>
           <a
             className='nav-link toggle-search'

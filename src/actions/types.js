@@ -3,3 +3,5 @@ export const MOVIES_ERROR = 'MOVIES_ERROR';
 export const SEARCH_MOVIES = 'SEARCH_MOVIES';
 export const CLEAR_SEARCH = 'CLEAR_SEARCH';
 export const SET_LOADING = 'SET_LOADING';
+export const WATCH_MOVIE = 'WATCH_MOVIE';
+export const GET_WATCHED_MOVIE = 'GET_WATCHED_MOVIE';

@@ -48,7 +48,8 @@ const MoviesList = ({
             filtered.results.map((movie, index) => (
               <Col
                 key={index}
-                md={4}
+                sm={6}
+                lg={4}
                 style={{ paddingRight: '15px', paddingLeft: '15px' }}
               >
                 <MovieCard
@@ -62,11 +63,13 @@ const MoviesList = ({
             movies.results.map((movie, index) => (
               <Col
                 key={index}
-                md={4}
+                sm={6}
+                lg={4}
                 style={{ paddingRight: '15px', paddingLeft: '15px' }}
               >
                 <MovieCard
                   movie={movie}
+                  watch={watch}
                   onSubmit={handleSubmit}
                   key={movie.id}
                 />

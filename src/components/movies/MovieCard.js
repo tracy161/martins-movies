@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { watchMovie, getWatchedMovie } from '../../actions/watchAction';
 import { Card, Button } from 'react-bootstrap';
 
 let movieAPI;
@@ -10,20 +12,29 @@ if (process.env.NODE_ENV !== 'production') {
   movieAPI = process.env.THE_MOVIE_DB_API_KEY;
 }
 
-const MovieCard = ({ movie, onSubmit }) => {
-  const [watchItem, setWatchItem] = useState(false);
-
-  useEffect(() => {
-    const storageItems = JSON.parse(localStorage.getItem('items'));
-    setWatchItem(storageItems);
-  }, []);
-
+const MovieCard = ({
+  movie,
+  onSubmit,
+  watching: { id },
+  watchMovie,
+  getWatchedMovie,
+  watch
+}) => {
+  const [state, setState] = useState([]);
   const handleWatch = (e) => {
     e.preventDefault();
     onSubmit({
       id: movie.id,
       isWatched: true
     });
+
+    const watchObj = watch.reduce((item, gen) => {
+      const { id, isWatched } = gen;
+      item[id] = isWatched;
+      console.log(item[id]);
+      return item;
+    }, []);
+    setState(watchObj);
   };
 
   const [genres, setGenres] = useState([]);
@@ -56,7 +67,7 @@ const MovieCard = ({ movie, onSubmit }) => {
       </span>
     );
   });
-
+  
   const shortGenreText = genreText.slice(0, 3);
 
   return (
@@ -73,8 +84,7 @@ const MovieCard = ({ movie, onSubmit }) => {
             size='sm'
             className='mark-btn'
             onClick={(e) => handleWatch(e)}
-          >
-            {watchItem === true ? <span>Watched</span> : <span>Unwatched</span>}
+          >{state[id] ? <span>Watched</span> : <span>Unwatched</span>}
           </Button>
           <Card.Body>
             <Card.Title>
@@ -106,4 +116,10 @@ MovieCard.propTypes = {
   movie: PropTypes.object.isRequired,
 };
 
-export default MovieCard;
+const mapStateToProps = (state) => ({
+  watching: state.watching,
+});
+
+export default connect(mapStateToProps, { watchMovie, getWatchedMovie })(
+  MovieCard
+);
