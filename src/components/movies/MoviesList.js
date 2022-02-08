@@ -54,6 +54,7 @@ const MoviesList = ({
               >
                 <MovieCard
                   movie={movie}
+                  watch={watch}
                   onSubmit={handleSubmit}
                   key={movie.id}
                 />
