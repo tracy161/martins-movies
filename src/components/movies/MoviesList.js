@@ -1,17 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Preloader from '../layouts/Preloader';
 import MovieCard from './MovieCard';
 import Pagination from '../pagination/Pagination';
-import { getMovies, nextPage } from '../../actions/movieAction';
+import SearchPagination from '../pagination/SearchPagination';
+import { getMovies } from '../../actions/movieAction';
 import { Row, Col } from 'react-bootstrap';
 
 const MoviesList = ({
   movie: { movies, filtered, currentPage, loading },
   getMovies,
-  nextPage,
 }) => {
+  const [watch, setWatch] = useState(
+    window.localStorage.getItem('items')
+      ? JSON.parse(window.localStorage.getItem('items'))
+      : []
+  );
+
   useEffect(() => {
     getMovies();
   }, [getMovies]);
@@ -20,7 +26,16 @@ const MoviesList = ({
     return <Preloader />;
   }
 
+  const handleSubmit = (e) => {
+    const watchedMovies = [e, ...watch];
+
+    window.localStorage.setItem('items', JSON.stringify(watchedMovies));
+
+    setWatch(watchedMovies);
+  };
+
   const numberPages = Math.floor(movies.total_results / 20);
+  const numberSearchPages = Math.floor(filtered?.total_results / 20);
 
   return (
     <>
@@ -30,13 +45,17 @@ const MoviesList = ({
         )}
         {!loading && movies !== null ? (
           filtered !== null ? (
-            filtered.map((movie, index) => (
+            filtered.results.map((movie, index) => (
               <Col
                 key={index}
                 md={4}
                 style={{ paddingRight: '15px', paddingLeft: '15px' }}
               >
-                <MovieCard movie={movie} />
+                <MovieCard
+                  movie={movie}
+                  onSubmit={handleSubmit}
+                  key={movie.id}
+                />
               </Col>
             ))
           ) : (
@@ -46,7 +65,11 @@ const MoviesList = ({
                 md={4}
                 style={{ paddingRight: '15px', paddingLeft: '15px' }}
               >
-                <MovieCard movie={movie} />
+                <MovieCard
+                  movie={movie}
+                  onSubmit={handleSubmit}
+                  key={movie.id}
+                />
               </Col>
             ))
           )
@@ -54,7 +77,12 @@ const MoviesList = ({
           <p className='center'>No movies to show...</p>
         )}
       </Row>
-      {movies.total_results > 20 ? (
+      {filtered?.total_results > 20 ? (
+        <SearchPagination pages={numberSearchPages} currentPage={currentPage} />
+      ) : (
+        ''
+      )}
+      {movies.total_results > 20 && filtered === null ? (
         <Pagination pages={numberPages} currentPage={currentPage} />
       ) : (
         ''
@@ -71,11 +99,10 @@ const movieRow = {
 MoviesList.propTypes = {
   movie: PropTypes.object.isRequired,
   getMovies: PropTypes.func.isRequired,
-  nextPage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   movie: state.movie,
 });
 
-export default connect(mapStateToProps, { getMovies, nextPage })(MoviesList);
+export default connect(mapStateToProps, { getMovies })(MoviesList);

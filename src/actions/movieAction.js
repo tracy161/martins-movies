@@ -32,7 +32,7 @@ export const getMovies = () => async (dispatch) => {
       type: MOVIES_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
-  }
+  } 
 };
 
 export const nextPage = (pageNumber) => async (dispatch) => {
@@ -55,12 +55,51 @@ export const nextPage = (pageNumber) => async (dispatch) => {
 };
 
 // Search movies
-export const searchMovies = (text) => (dispatch) => {
+// export const searchMovies = (text) => (dispatch) => {
+//   try {
+//     setLoading();
+//     dispatch({
+//       type: SEARCH_MOVIES,
+//       payload: text,
+//     });
+//   } catch (err) {
+//     dispatch({
+//       type: MOVIES_ERROR,
+//       payload: { msg: err.response.statusText, status: err.response.status },
+//     });
+//   }
+// };
+
+export const searchMovies = (searchTerm) => async (dispatch) => {
   try {
     setLoading();
+    const res = await axios.get(
+      `https://api.themoviedb.org/3/search/movie?api_key=${movieAPI}&query=${searchTerm}`
+    );
     dispatch({
       type: SEARCH_MOVIES,
-      payload: text,
+      payload: res.data,
+      param: searchTerm,
+    });
+  } catch (err) {
+    dispatch({
+      type: MOVIES_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const nextSearchPage = (pageNumber, searchTerm) => async (dispatch) => {
+  try {
+    setLoading();
+    const res = await axios.get(
+      `https://api.themoviedb.org/3/search/movie?api_key=${movieAPI}&query=${searchTerm}&page=${pageNumber}`
+    );
+
+    dispatch({
+      type: SEARCH_MOVIES,
+      payload: res.data,
+      param: searchTerm,
     });
   } catch (err) {
     dispatch({

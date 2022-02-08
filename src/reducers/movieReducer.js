@@ -12,12 +12,13 @@ const initialState = {
   currentPage: 1,
   totalResults: 0,
   totalPages: 0,
+  searchTerm: '',
   loading: false,
   error: null,
 };
 
 const movieReducer = (state = initialState, action) => {
-  const { type, payload } = action;
+  const { type, payload, param } = action;
   switch (type) {
     case GET_MOVIES:
       return {
@@ -31,16 +32,18 @@ const movieReducer = (state = initialState, action) => {
     case SEARCH_MOVIES:
       return {
         ...state,
-        filtered: state.movies.results.filter(({ title }) => {
-          const testString = `${title}`.toLowerCase();
-          return testString.includes(payload.toLowerCase());
-        }),
+        filtered: payload,
+        currentPage: payload.page,
+        totalResults: payload.total_results,
+        totalPages: payload.total_pages,
+        searchTerm: param,
         loading: false,
       };
     case CLEAR_SEARCH:
       return {
         ...state,
         filtered: null,
+        loading: false,
       };
     case SET_LOADING:
       return {
@@ -48,7 +51,6 @@ const movieReducer = (state = initialState, action) => {
         loading: true,
       };
     case MOVIES_ERROR:
-      console.log(payload);
       return {
         ...state,
         error: payload,

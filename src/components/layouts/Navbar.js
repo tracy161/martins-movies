@@ -15,6 +15,7 @@ const NavBar = ({ movie: { filtered }, searchMovies, clearSearch }) => {
   const closeSearchBar = (e) => {
     e.preventDefault();
     setOpenSearchBar(false);
+    clearSearch();
   };
 
   useEffect(() => {
@@ -27,10 +28,8 @@ const NavBar = ({ movie: { filtered }, searchMovies, clearSearch }) => {
 
   // Search
   const onChange = (e) => {
-    if (text.current.value !== '') {
+    if (text.current.value !== '' && e.key === 'Enter') {
       searchMovies(e.target.value);
-    } else {
-      clearSearch();
     }
   };
 
@@ -72,7 +71,7 @@ const NavBar = ({ movie: { filtered }, searchMovies, clearSearch }) => {
             name='s'
             placeholder='Search your movie...'
             autoComplete='off'
-            onChange={onChange}
+            onKeyDown={onChange}
           />
           <span id='general-search-close'>
             <a

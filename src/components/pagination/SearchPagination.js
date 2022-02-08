@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { nextPage } from '../../actions/movieAction';
+import { nextSearchPage } from '../../actions/movieAction';
 import { Row, Col, Nav } from 'react-bootstrap';
 
-const Pagination = ({ pages, movie: { currentPage }, nextPage }) => {
+const Pagination = ({ pages, movie: { currentPage, searchTerm }, nextSearchPage }) => {
   const pageLinks = [];
 
   for (let i = 1; i <= pages + 1; i++) {
     let active = currentPage === i && 'current';
 
     pageLinks.push(
-      <li key={i} onClick={() => nextPage(i)}>
+      <li key={i} onClick={() => nextSearchPage(i, searchTerm)}>
         <span aria-current='page' className={`page-numbers ${active}`}>
           <a className={`page-numbers ${active}`} href='#!'>
             {i}
@@ -26,7 +26,7 @@ const Pagination = ({ pages, movie: { currentPage }, nextPage }) => {
         <Nav className='pagination'>
           <ul className='page-numbers'>
             {currentPage > 1 && (
-              <li onClick={() => nextPage(currentPage - 1)}>
+              <li onClick={() => nextSearchPage(currentPage - 1, searchTerm)}>
                 <span aria-current='page' className='page-numbers'>
                   <a className='page-numbers' href='#!'>
                     Prev
@@ -34,9 +34,9 @@ const Pagination = ({ pages, movie: { currentPage }, nextPage }) => {
                 </span>
               </li>
             )}
-            {pageLinks.slice(0, 5)}
+            {pageLinks.slice(0, 4)}
             {currentPage < pages + 1 && (
-              <li onClick={() => nextPage(currentPage + 1)}>
+              <li onClick={() => nextSearchPage(currentPage + 1, searchTerm)}>
                 <span aria-current='page' className='page-numbers'>
                   <a className='page-numbers' href='#!'>
                     Next
@@ -52,11 +52,11 @@ const Pagination = ({ pages, movie: { currentPage }, nextPage }) => {
 };
 
 Pagination.propTypes = {
-  nextPage: PropTypes.func.isRequired,
+  nextSearchPage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   movie: state.movie,
 });
 
-export default connect(mapStateToProps, { nextPage })(Pagination);
+export default connect(mapStateToProps, { nextSearchPage })(Pagination);

@@ -10,13 +10,21 @@ if (process.env.NODE_ENV !== 'production') {
   movieAPI = process.env.THE_MOVIE_DB_API_KEY;
 }
 
-const MovieCard = ({ movie }) => {
-  const [watch, setWatch] = useState(false);
+const MovieCard = ({ movie, onSubmit }) => {
+  const [watchItem, setWatchItem] = useState(false);
+
+  useEffect(() => {
+    const storageItems = JSON.parse(localStorage.getItem('items'));
+    setWatchItem(storageItems);
+  }, []);
 
   const handleWatch = (e) => {
     e.preventDefault();
-    setWatch(true);
-  }
+    onSubmit({
+      id: movie.id,
+      isWatched: true
+    });
+  };
 
   const [genres, setGenres] = useState([]);
   const [imdbLink, setIMDBLink] = useState([]);
@@ -43,11 +51,14 @@ const MovieCard = ({ movie }) => {
 
   const genreText = movie.genre_ids.map((id, index) => {
     return (
-      <span style={{ float: 'right' }}>{genres[id] + (index ? ',' : ' ')}</span>
+      <span key={index} style={{ float: 'right' }}>
+        {genres[id] + (index ? ',' : ' ')}{' '}
+      </span>
     );
   });
 
   const shortGenreText = genreText.slice(0, 3);
+
   return (
     <>
       <Card className='movie-box'>
@@ -58,12 +69,16 @@ const MovieCard = ({ movie }) => {
           />
         </div>
         <div className='listing-content'>
-          <Button size='sm' className='mark-btn' onClick={(e) => handleWatch(e)}>
-            {watch ? <p><i className='fa fa-check'></i> Watched</p> : 'Unwatched'}
+          <Button
+            size='sm'
+            className='mark-btn'
+            onClick={(e) => handleWatch(e)}
+          >
+            {watchItem === true ? <span>Watched</span> : <span>Unwatched</span>}
           </Button>
           <Card.Body>
             <Card.Title>
-              <h2 className='title'>{movie.title}</h2>
+              <h3 className='title'>{movie.title}</h3>
             </Card.Title>
             <Card.Subtitle className='mb-2 text-muted'>
               <i className='fa fa-star'></i>
