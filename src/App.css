@@ -91,7 +91,7 @@ header h1 {
 }
 
 .card-text {
-  height: 6vw
+  height: 6vw;
 }
 
 .text-muted {
@@ -292,6 +292,13 @@ ul.page-numbers span.page-numbers.current {
 
 a:hover {
   color: #a65dca !important;
+}
+
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @media only screen and (max-width: 1199px) {

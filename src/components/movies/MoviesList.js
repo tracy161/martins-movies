@@ -6,7 +6,7 @@ import MovieCard from './MovieCard';
 import Pagination from '../pagination/Pagination';
 import SearchPagination from '../pagination/SearchPagination';
 import { getMovies } from '../../actions/movieAction';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Button, Container } from 'react-bootstrap';
 
 const MoviesList = ({
   movie: { movies, filtered, currentPage, loading },
@@ -40,8 +40,17 @@ const MoviesList = ({
   return (
     <>
       <Row style={movieRow}>
-        {!loading && filtered?.length === 0 && (
-          <h1 style={{ textAlign: 'center' }}>No Movies Found...</h1>
+        {!loading && filtered?.results.length === 0 && (
+          <>
+            <Container>
+              <h1>Opps! No Movies Found...</h1>
+              <a href='/'>
+                <Button className='button-movie' style={{ margin: '20px' }}>
+                  Go Back
+                </Button>
+              </a>
+            </Container>
+          </>
         )}
         {!loading && movies !== null ? (
           filtered !== null ? (
