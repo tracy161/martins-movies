@@ -94,6 +94,10 @@ header h1 {
   border: #9352b3;
 }
 
+.mark-btn:hover {
+  background: #a65dca !important;
+}
+
 .button-movie {
   background: #9352b3;
   color: #fff;
@@ -108,7 +112,7 @@ header h1 {
 }
 
 .button-movie:hover {
-  background: #9352b3 !important;
+  background: #a65dca !important;
 }
 
 footer.footer.bg-dark .footer-copyright-area {
@@ -269,4 +273,8 @@ ul.page-numbers span.page-numbers.current {
   border-radius: 100px;
   border: none;
   box-shadow: 0 1px 10px #ccc;
+}
+
+a:hover {
+  color: #a65dca!important;
 }

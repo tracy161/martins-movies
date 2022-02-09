@@ -63,7 +63,7 @@ const NavBar = ({ movie: { filtered }, searchMovies, clearSearch }) => {
           >
             <i className='fa fa-search'></i>
           </a>
-          <Button className='button-movie'><i class="fa fa-user"></i> Log In</Button>
+          <Button className='button-movie'><i className="fa fa-user"></i> Log In</Button>
         </div>
       </Navbar>
       <div
