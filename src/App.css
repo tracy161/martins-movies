@@ -295,16 +295,12 @@ a:hover {
 }
 
 .loader {
-  position: fixed;
-  z-index: 999;
-  overflow: show;
-  margin: auto;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
   width: 50px;
   height: 50px;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  margin: auto
 }
 
 @media only screen and (max-width: 1440px) {
@@ -315,5 +311,3 @@ a:hover {
     height: auto;
   }
 }
-
-
