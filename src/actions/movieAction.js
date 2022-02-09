@@ -12,7 +12,7 @@ let movieAPI;
 if (process.env.NODE_ENV !== 'production') {
   movieAPI = process.env.REACT_APP_THE_MOVIE_DB_API_KEY;
 } else {
-  movieAPI = process.env.THE_MOVIE_DB_API_KEY;
+  movieAPI = process.env.REACT_APP_THE_MOVIE_DB_API_KEY;
 }
 
 // Get Movies from the movie database
