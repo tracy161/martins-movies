@@ -43,6 +43,7 @@ const movieReducer = (state = initialState, action) => {
       return {
         ...state,
         filtered: null,
+        currentPage: 1,
         loading: false,
       };
     case SET_LOADING:

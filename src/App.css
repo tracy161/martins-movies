@@ -9,6 +9,15 @@
   padding: 0.5rem 2rem;
 }
 
+.dropdown-menu.show {
+  border: none !important;
+  box-shadow: 3px 2px 7px 1px rgb(0 0 0 / 8%);
+  transform-origin: 10% top 0;
+  transition: max-height 0s linear 0.15s,
+    opacity 0.1s cubic-bezier(0.39, 0.575, 0.565, 1) 0s,
+    transform 0.15s cubic-bezier(0.1, 1.26, 0.83, 1) 0s;
+}
+
 .page-header {
   position: relative;
   padding: 60px 0;
@@ -64,7 +73,7 @@ header h1 {
 }
 
 .listing-image {
-  max-height: 350px;
+  height: 350px;
   overflow: hidden;
 }
 
@@ -73,11 +82,16 @@ header h1 {
   font-size: 1.5em;
   font-weight: 500;
   margin: 0;
+  height: 7vw;
 }
 
 .listing-content {
   position: relative;
   padding: 10px 30px 30px 30px;
+}
+
+.card-text {
+  height: 6vw
 }
 
 .text-muted {
@@ -270,11 +284,30 @@ ul.page-numbers span.page-numbers.current {
   background: #9352b3;
   color: white;
   cursor: pointer;
-  border-radius: 100px;
+  border-radius: 50%;
   border: none;
   box-shadow: 0 1px 10px #ccc;
+  padding: 0 13px;
 }
 
 a:hover {
-  color: #a65dca!important;
+  color: #a65dca !important;
+}
+
+@media only screen and (max-width: 1199px) {
+  .title {
+    height: auto;
+  }
+  .card-text {
+    height: auto;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1440px) {
+  .title {
+    height: 9vw;
+  }
+  .card-text {
+    height: 8vw;
+  }
 }

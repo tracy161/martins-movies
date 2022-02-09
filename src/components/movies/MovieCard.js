@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, Modal } from 'react-bootstrap';
+import dummyImg from '../../assets/pics/dummy-img.jpeg';
 
 let movieAPI;
 
@@ -61,14 +62,23 @@ const MovieCard = ({ movie, onSubmit, watch }) => {
 
   const shortGenreText = genreText.slice(0, 3);
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <>
       <Card className='movie-box'>
         <div className='listing-image'>
-          <Card.Img
-            variant='top'
-            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-          />
+          {movie.poster_path !== null ? (
+            <Card.Img
+              variant='top'
+              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+            />
+          ) : (
+            <Card.Img variant='top' src={dummyImg} />
+          )}
         </div>
         <div className='listing-content'>
           <Button
@@ -77,7 +87,9 @@ const MovieCard = ({ movie, onSubmit, watch }) => {
             onClick={(e) => handleWatch(e)}
           >
             {state[movie.id] === true ? (
-              <span>Watched</span>
+              <span>
+                <i className='fa fa-check'></i> Watched
+              </span>
             ) : (
               <span>Unwatched</span>
             )}
@@ -91,8 +103,8 @@ const MovieCard = ({ movie, onSubmit, watch }) => {
               {movie.vote_average} / 10
               {shortGenreText}
             </Card.Subtitle>
-            <Card.Text>{movie.overview.substring(0, 200)}...</Card.Text>
-            {imdbLink && (
+            <Card.Text>{movie.overview.substring(0, 160)}...</Card.Text>
+            {imdbLink ? (
               <a
                 href={`https://www.imdb.com/title/${imdbLink}/`}
                 target='_blank'
@@ -100,10 +112,25 @@ const MovieCard = ({ movie, onSubmit, watch }) => {
               >
                 <Button className='button-movie'>Read More</Button>
               </a>
+            ) : (
+              <Button className='button-movie' onClick={handleShow}>
+                Read More
+              </Button>
             )}
           </Card.Body>
         </div>
       </Card>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Opps!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>We will update the movie's information soon</Modal.Body>
+        <Modal.Footer>
+          <Button className='button-movie' onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

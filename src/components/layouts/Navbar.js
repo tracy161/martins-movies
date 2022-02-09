@@ -1,10 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Navbar, Nav, Button } from 'react-bootstrap';
+import { Navbar, Nav, Button, NavDropdown } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { searchMovies, clearSearch } from '../../actions/movieAction';
 
 const NavBar = ({ movie: { filtered }, searchMovies, clearSearch }) => {
+  const [show, setShow] = useState(false);
+  const showDropdown = (e) => {
+    setShow(!show);
+  };
+  const hideDropdown = (e) => {
+    setShow(false);
+  };
+
   const [openSearchBar, setOpenSearchBar] = useState(false);
 
   const showSearchBar = (e) => {
@@ -48,8 +56,20 @@ const NavBar = ({ movie: { filtered }, searchMovies, clearSearch }) => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
-          <Nav className='me-auto' style={{margin: 'auto'}}>
-            <Nav.Link href='#!'>Home</Nav.Link>
+          <Nav className='me-auto' style={{ margin: 'auto' }}>
+            <NavDropdown
+              title='Home'
+              id='basic-nav-dropdown'
+              show={show}
+              onMouseEnter={showDropdown}
+              onMouseLeave={hideDropdown}
+            >
+              <NavDropdown.Item href='#action/3.1'>Action</NavDropdown.Item>
+              <NavDropdown.Item href='#action/3.2'>
+                Another action
+              </NavDropdown.Item>
+              <NavDropdown.Item href='#action/3.3'>Something</NavDropdown.Item>
+            </NavDropdown>
             <Nav.Link href='#!'>Movies & TV Shows</Nav.Link>
             <Nav.Link href='#!'>Blog</Nav.Link>
             <Nav.Link href='#!'>Contact Us</Nav.Link>
@@ -63,7 +83,9 @@ const NavBar = ({ movie: { filtered }, searchMovies, clearSearch }) => {
           >
             <i className='fa fa-search'></i>
           </a>
-          <Button className='button-movie'><i className="fa fa-user"></i> Log In</Button>
+          <Button className='button-movie'>
+            <i className='fa fa-user'></i> Log In
+          </Button>
         </div>
       </Navbar>
       <div

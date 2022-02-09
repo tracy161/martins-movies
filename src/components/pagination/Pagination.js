@@ -20,6 +20,7 @@ const Pagination = ({ pages, movie: { currentPage }, nextPage }) => {
       </li>
     );
   }
+
   return (
     <Row style={{ padding: '0 0 40px 0' }}>
       <Col>
@@ -34,7 +35,23 @@ const Pagination = ({ pages, movie: { currentPage }, nextPage }) => {
                 </span>
               </li>
             )}
-            {pageLinks.slice(0, 5)}
+            {currentPage > 5 && (
+              <>
+                <li onClick={() => nextPage(1)}>
+                  <span aria-current='page' className='page-numbers'>
+                    <a className='page-numbers' href='#!'>
+                      1
+                    </a>
+                  </span>
+                </li>
+                <li>
+                  <span>...</span>
+                </li>
+              </>
+            )}
+            {currentPage <= 5
+              ? pageLinks.slice(0, 5)
+              : pageLinks.slice(currentPage - 5, currentPage)}
             {currentPage < pages + 1 && (
               <li onClick={() => nextPage(currentPage + 1)}>
                 <span aria-current='page' className='page-numbers'>

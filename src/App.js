@@ -42,7 +42,7 @@ const App = () => {
       </>
       {showButton && (
         <button onClick={scrollToTop} className="back-to-top">
-          &#8679;
+          <i className="fa fa-angle-up"></i>
         </button>
       )}
     </Provider>
