@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { searchMovies, clearSearch } from '../../actions/movieAction';
@@ -36,17 +36,25 @@ const NavBar = ({ movie: { filtered }, searchMovies, clearSearch }) => {
   return (
     <>
       <Navbar
-        style={{ padding: '0.5rem 1rem', justifyContent: 'space-between' }}
+        expand='lg'
+        style={{
+          padding: '0.5rem 1rem',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+        }}
       >
         <Navbar.Brand>
           <h2 style={{ fontSize: '30px' }}>Martin's Movies</h2>
         </Navbar.Brand>
-        <Nav>
-          <Nav.Link href='#!'>Home</Nav.Link>
-          <Nav.Link href='#!'>Movies & TV Shows</Nav.Link>
-          <Nav.Link href='#!'>Blog</Nav.Link>
-          <Nav.Link href='#!'>Contact Us</Nav.Link>
-        </Nav>
+        <Navbar.Toggle aria-controls='basic-navbar-nav' />
+        <Navbar.Collapse id='basic-navbar-nav'>
+          <Nav className='me-auto' style={{margin: 'auto'}}>
+            <Nav.Link href='#!'>Home</Nav.Link>
+            <Nav.Link href='#!'>Movies & TV Shows</Nav.Link>
+            <Nav.Link href='#!'>Blog</Nav.Link>
+            <Nav.Link href='#!'>Contact Us</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
         <div className='nav-item'>
           <a
             className='nav-link toggle-search'
@@ -55,6 +63,7 @@ const NavBar = ({ movie: { filtered }, searchMovies, clearSearch }) => {
           >
             <i className='fa fa-search'></i>
           </a>
+          <Button className='button-movie'><i class="fa fa-user"></i> Log In</Button>
         </div>
       </Navbar>
       <div
