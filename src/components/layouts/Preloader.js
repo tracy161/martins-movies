@@ -1,11 +1,13 @@
 import React from 'react';
-import { Spinner } from 'react-bootstrap';
+import { Container, Spinner } from 'react-bootstrap';
 
 const Preloader = () => {
   return (
-    <Spinner animation='border' role='status' className='loader'>
-      <span className='visually-hidden'>Loading...</span>
-    </Spinner>
+    <Container>
+      <Spinner animation='border' role='status' className='loader'>
+        <span className='visually-hidden'>Loading...</span>
+      </Spinner>
+    </Container>
   );
 };
 

@@ -124,7 +124,7 @@ const MovieCard = ({ movie, onSubmit, watch }) => {
         <Modal.Header closeButton>
           <Modal.Title>Opps!</Modal.Title>
         </Modal.Header>
-        <Modal.Body>We will update the movie's information soon</Modal.Body>
+        <Modal.Body>We will update the movie's information soon.</Modal.Body>
         <Modal.Footer>
           <Button className='button-movie' onClick={handleClose}>
             Close

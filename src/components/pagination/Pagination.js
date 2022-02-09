@@ -35,7 +35,7 @@ const Pagination = ({ pages, movie: { currentPage }, nextPage }) => {
                 </span>
               </li>
             )}
-            {currentPage > 5 && (
+            {currentPage > 6 && (
               <>
                 <li onClick={() => nextPage(1)}>
                   <span aria-current='page' className='page-numbers'>
@@ -49,8 +49,8 @@ const Pagination = ({ pages, movie: { currentPage }, nextPage }) => {
                 </li>
               </>
             )}
-            {currentPage <= 5
-              ? pageLinks.slice(0, 5)
+            {currentPage <= 6
+              ? pageLinks.slice(0, 6)
               : pageLinks.slice(currentPage - 5, currentPage)}
             {currentPage < pages + 1 && (
               <li onClick={() => nextPage(currentPage + 1)}>

@@ -296,12 +296,18 @@ a:hover {
 
 .loader {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  z-index: 999;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
 }
 
-@media only screen and (max-width: 1199px) {
+@media only screen and (max-width: 1440px) {
   .title {
     height: auto;
   }
@@ -310,11 +316,4 @@ a:hover {
   }
 }
 
-@media only screen and (min-width: 1200px) and (max-width: 1440px) {
-  .title {
-    height: 9vw;
-  }
-  .card-text {
-    height: 8vw;
-  }
-}
+
